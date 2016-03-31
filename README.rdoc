@@ -1,28 +1,8 @@
-== README
+== PleaseTattoo.Me
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+One thing people forget about tattoo artists is that they're, well, artists.  They are not a fungible asset, every single one of them has a unique style and are especially talented at certain types of tattoos.
+While this is the source of all of the richness in the world of tattoos, it also creates a lot of challenges.  Their art doesn't hang on the wall of a gallery (unless the gallery happens to be in a serial killers shed), it's on your body for life.  That means you've got a lot invested in your tattoo artist's style and skill set when you sit down in his/her chair.  Despite this, there is virtually no way to know that stuff ahead of time.
 
-Things you may want to cover:
+We're creating PleaseTattoo.Me to fix that.  Structurally it's a lot like a million other rating sites, it will have a bunch of different categories where you can rate either a tattoo (and indirectly the tattoo's artist) or an artist.  It will help you figure out what kind of styles you like, and find an artist within an acceptable distance who excels at that kind of work.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+This project is in its infancy, but we will flesh it out over time.
