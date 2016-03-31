@@ -1,0 +1,2 @@
+module ParlorsHelper
+end
