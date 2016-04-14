@@ -2,8 +2,14 @@ class Parlor < ActiveRecord::Base
 	has_many :artists
 	has_many :tats, through: :artists
 
+	attr_accessor :full_address
+
+	def initialize
+		@full_address = self.full_address
+	end
+
 	def street_address
-		return "#{self.street_number.to_s + ' ' if self.street_number.present?}#{self.street_direction + ' ' if self.street_direction.present?}#{self.street_name + ' ' if self.street_name.present?}#{self.street_type + ' ' if self.street_type.present?}#{'# ' + self.unit if self.unit.present?}".strip!
+		return "#{self.street_number.to_s + ' ' if self.street_number.present?}#{self.street_direction + ' ' if self.street_direction.present?}#{self.street_name + ' ' if self.street_name.present?}#{self.street_type + ' ' if self.street_type.present?}#{'# ' + self.unit if self.unit.present?}".strip
 	end
 
 	def city_and_state
@@ -15,8 +21,7 @@ class Parlor < ActiveRecord::Base
 			return text
 		end
 	end
-
 	def full_address
-		return self.street_address + ', ' + self.city_and_state
+		@full_address = self.street_address + ', ' + self.city_and_state
 	end
 end

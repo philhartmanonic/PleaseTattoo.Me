@@ -1,32 +1,20 @@
 class ArtistsController < ApplicationController
+	require 'json'
 	def index
-		@artists = Artist.all
-	end
-
-	def new
-		@artist = Artist.new
+		json_artists = Artist.all.to_json({:include => {:parlor => { :methods => :full_address}}})
+		@artists = JSON.parse(json_artists)
+		json_parlors = Parlor.all.to_json({:methods => :full_address})
+		@parlors = JSON.parse(json_parlors)
 	end
 
 	def create
 		@artist = Artist.new(artist_params)
 
-		respond_to do |format|
-		    if @artist.save
-		        format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
-		        format.json { render :show, status: :created, location: @artist }
-		    else
-		        format.html { render :new }
-		        format.json { render json: @artist.errors, status: :unprocessable_entity }
-		    end
-		end
-	end
-
-	def show
-		@artist = Artist.find(params[:id])
-	end
-
-	def edit
-		@artist = Artist.find(params[:id])
+	    if @artist.save
+	        render json: @artist
+	    else
+	        render json: @artist.errors, status: :unprocessable_entity
+	    end
 	end
 
 	def update
@@ -42,6 +30,7 @@ class ArtistsController < ApplicationController
 	end
 
 	def destroy
+		@artist = Artist.find(params[:id])
 	    @artist.destroy
 	    respond_to do |format|
 	    	format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
