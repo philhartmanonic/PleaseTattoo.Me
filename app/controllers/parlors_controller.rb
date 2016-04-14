@@ -55,6 +55,6 @@ class ParlorsController < ApplicationController
 	end
 
 	def parlor_params
-		params.require(:parlor).permit(:id, :name, :street_number, :street_direction, :street_name, :street_type, :unit, :city, :state, :zip)
+		params.require(:parlor).permit(:id, :name, :street_number, :street_direction, :street_name, :street_type, :unit, :city, :state, :zip, :full_address)
 	end
 end
