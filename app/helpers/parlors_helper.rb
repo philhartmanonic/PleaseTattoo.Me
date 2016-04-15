@@ -1,19 +1,13 @@
 module ParlorsHelper
-	def street_address
-		return "#{self.street_number.to_s + ' ' if self.street_number.present?}#{self.street_direction + ' ' if self.street_direction.present?}#{self.street_name + ' ' if self.street_name.present?}#{self.street_type + ' ' if self.street_type.present?}#{'# ' + self.unit if self.unit.present?}".strip
-	end
+	def fetch_parlors
+		parlors = $redis.get("parlors")
 
-	def city_and_state
-		text = "#{self.city + ', ' if self.city.present?}#{self.state + ', ' if self.state.present?}#{self.zip if self.zip.present?}".strip
-		if text[-1] == ','
-			text = text[0..-2]
-			return text
-		else
-			return text
+		if parlors.nil?
+			parlors = Parlor.all.to_json({:methods => :full_address})
+			$redis.set("parlors", parlors)
+			$redis.expire("parlors", 5.hour.to_i)
 		end
-	end
-
-	def full_address
-		return self.street_address + ', ' + self.city_and_state
+		
+		@parlors = JSON.load parlors
 	end
 end

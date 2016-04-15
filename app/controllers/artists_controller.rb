@@ -1,10 +1,11 @@
 class ArtistsController < ApplicationController
 	require 'json'
+	include ArtistsHelper
+	include ParlorsHelper
+
 	def index
-		json_artists = Artist.all.to_json({:include => {:parlor => { :methods => :full_address}}})
-		@artists = JSON.parse(json_artists)
-		json_parlors = Parlor.all.to_json({:methods => :full_address})
-		@parlors = JSON.parse(json_parlors)
+		fetch_artists
+		fetch_parlors
 	end
 
 	def create
@@ -12,6 +13,8 @@ class ArtistsController < ApplicationController
 
 	    if @artist.save
 	        render json: @artist
+	        $redis.set("artists", Artist.all.to_json({:include => {:parlor => {:methods => :full_address}}}))
+	        $redis.expire("artists", 5.hours.to_i)
 	    else
 	        render json: @artist.errors, status: :unprocessable_entity
 	    end
@@ -35,6 +38,7 @@ class ArtistsController < ApplicationController
 	    respond_to do |format|
 	    	format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
 	    	format.json { head :no_content }
+	    $redis.set("artists", Artist.all.to_json({:include => {:parlor => {:methods => :full_address}}}))
 	    end
 	end
 

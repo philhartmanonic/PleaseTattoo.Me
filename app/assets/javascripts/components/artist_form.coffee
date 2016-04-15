@@ -41,7 +41,7 @@
 				React.DOM.select
 					name: 'parlor_id'
 					className: 'form-control'
-					value: @state.selectValue
+					value: @state.parlor_id
 					onChange: @handleChange
 					for parlor in @props.parlors
 						React.createElement ParlorOptions, key: parlor.id, id: parlor.id, label: parlor.name, parlor: parlor, value: @state.parlor_id

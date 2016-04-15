@@ -1,5 +1,6 @@
 class Artist < ActiveRecord::Base
 	has_many :tags, as: :taggable
+	has_many :users, through: :tats
 	belongs_to :parlor
 	has_many :tats
 	accepts_nested_attributes_for :parlor
