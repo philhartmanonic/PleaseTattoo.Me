@@ -1,6 +1,7 @@
 class Parlor < ActiveRecord::Base
 	has_many :artists
 	has_many :tats, through: :artists
+	has_many :users, through: :tats
 
 	attr_accessor :full_address
 
