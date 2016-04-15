@@ -13,5 +13,6 @@ ADD . /app
 RUN useradd --create-home --home-dir /app --shell /bin/bash tattoo
 RUN chown -R tattoo:tattoo /app
 USER tattoo
+EXPOSE 3000
 CMD ["redis-server"]
 CMD ["rails", "server"]
