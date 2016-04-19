@@ -33,11 +33,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'react-router-rails', '~>0.13.3.2'
 gem 'acts_as_follower'
-gem 'redis'
-gem 'redis-namespace'
-gem 'redis-rails'
-gem 'redis-rack-cache'
-gem 'redis-browser'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

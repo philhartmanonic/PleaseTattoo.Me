@@ -1,11 +1,11 @@
 class ArtistsController < ApplicationController
 	require 'json'
-	include ArtistsHelper
-	include ParlorsHelper
 
 	def index
-		fetch_artists
-		fetch_parlors
+		json_artists = Artist.all.to_json({:include => {:parlor => {:methods => :full_address}}})
+		@artists = JSON.parse(json_artists)
+		json_parlors = Parlor.all.to_json({:methods => :full_address})
+		@parlors = JSON.parse(json_parlors)
 	end
 
 	def create
@@ -13,8 +13,6 @@ class ArtistsController < ApplicationController
 
 	    if @artist.save
 	        render json: @artist
-	        $redis.set("artists", Artist.all.to_json({:include => {:parlor => {:methods => :full_address}}}))
-	        $redis.expire("artists", 5.hours.to_i)
 	    else
 	        render json: @artist.errors, status: :unprocessable_entity
 	    end
