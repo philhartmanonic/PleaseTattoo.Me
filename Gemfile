@@ -31,7 +31,6 @@ gem 'aws-sdk', '< 2.0.0'
 gem 'react-rails', '~> 1.0'
 gem 'devise'
 gem 'cancancan'
-gem 'react-router-rails', '~>0.13.3.2'
 gem 'acts_as_follower'
 
 
