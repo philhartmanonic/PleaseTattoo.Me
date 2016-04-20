@@ -1,6 +1,6 @@
 class ParlorsController < ApplicationController
 	def index
-		@parlors = Parlor.all
+		@parlors = Parlor.all.to_json({:methods => :full_address})
 	end
 
 	def new
@@ -10,19 +10,18 @@ class ParlorsController < ApplicationController
 	def create
 		@parlor = Parlor.new(parlor_params)
 
-		respond_to do |format|
-		    if @parlor.save
-		        format.html { redirect_to @parlor, notice: 'Parlor was successfully created.' }
-		        format.json { render :show, status: :created, location: @parlor }
-		    else
-		        format.html { render :new }
-		        format.json { render json: @parlor.errors, status: :unprocessable_entity }
-		    end
-		end
+	    if @parlor.save
+	        render json: @parlor
+	    else
+	        render json: @parlor.errors, status: :unprocessable_entity
+	    end
 	end
 
 	def show
-		@parlor = Parlor.find(params[:id])
+		@parlor = Parlor.find(params[:id]).to_json({:methods => :full_address})
+		respond_to do |format|
+			format.json { render :json => {:name => @parlor.name, :full_address => @parlor.full_address } }
+		end
 	end
 
 	def edit

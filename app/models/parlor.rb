@@ -5,10 +5,6 @@ class Parlor < ActiveRecord::Base
 
 	attr_accessor :full_address
 
-	def initialize
-		@full_address = self.full_address
-	end
-
 	def street_address
 		return "#{self.street_number.to_s + ' ' if self.street_number.present?}#{self.street_direction + ' ' if self.street_direction.present?}#{self.street_name + ' ' if self.street_name.present?}#{self.street_type + ' ' if self.street_type.present?}#{'# ' + self.unit if self.unit.present?}".strip
 	end

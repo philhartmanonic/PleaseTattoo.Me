@@ -1,3 +1,2 @@
-module ParlorsHelper
-	
+module ParlorsHelper	
 end

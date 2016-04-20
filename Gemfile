@@ -32,6 +32,7 @@ gem 'react-rails', '~> 1.0'
 gem 'devise'
 gem 'cancancan'
 gem 'acts_as_follower'
+gem 'active_model_serializers'
 
 
 # Use ActiveModel has_secure_password

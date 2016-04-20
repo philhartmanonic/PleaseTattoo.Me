@@ -33,11 +33,7 @@ class ArtistsController < ApplicationController
 	def destroy
 		@artist = Artist.find(params[:id])
 	    @artist.destroy
-	    respond_to do |format|
-	    	format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
-	    	format.json { head :no_content }
-	    $redis.set("artists", Artist.all.to_json({:include => {:parlor => {:methods => :full_address}}}))
-	    end
+	    head :no_content
 	end
 
 	private
