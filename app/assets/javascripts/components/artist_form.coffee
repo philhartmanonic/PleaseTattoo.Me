@@ -2,7 +2,6 @@
 	getInitialState: ->
 		first_name: ''
 		last_name: ''
-		parlor_id: 1
 		addingParlor: false
 	handleChange: (e) ->
 		name = e.target.name
@@ -23,6 +22,8 @@
 			@props.handleNewArtist data
 			@setState @getInitialState()
 		, 'JSON'
+	componentWillReceiveProps: (nextProps) ->
+		@setState parlor_id: nextProps.parlorFocus 
 	render: ->
 		React.DOM.div
 			className: 'artist_form'
@@ -54,6 +55,9 @@
 						className: 'form-control'
 						value: @state.parlor_id
 						onChange: @handleChange
+						React.DOM.option
+							value: ''
+							label: ''
 						for parlor in @props.parlors
 							React.createElement ParlorOptions, key: parlor.id, id: parlor.id, label: parlor.name, parlor: parlor, value: @state.parlor_id
 						React.DOM.option

@@ -7,9 +7,8 @@
 		artists: @props.artists
 		parlors: @props.parlors
 		addingParlor: false
-		addedParlor: ''
-		addedParlorID: ''
 		data: ''
+		parlorFocus: ''
 	getDefaultProps: ->
 		artists: []
 		parlors: []
@@ -46,6 +45,8 @@
 					full_address: data.parlor.full_address
 				}
 				@setState parlors: parlors
+				@setState parlorFocus: data.parlor.id
+				@setState addingParlor: false
 
 	deleteArtist: (artist) ->
 		index = @state.artists.indexOf artist
@@ -57,7 +58,7 @@
 			React.DOM.h2
 				className: 'title'
 				'Tattoo Artists'
-			React.createElement ArtistForm, handleNewArtist: @addArtist, callbackParent: @createParlor, parlors: @state.parlors
+			React.createElement ArtistForm, handleNewArtist: @addArtist, callbackParent: @createParlor, parlors: @state.parlors, parlorFocus: @state.parlorFocus
 			if @state.addingParlor
 				React.createElement ParlorForm, handleNewParlor: @addParlor
 			else
