@@ -12,7 +12,6 @@
  *
  */
 
-@import "bootstrap-sprockets";
 @import "bootstrap";
 
 body {
@@ -27,3 +26,40 @@ hr {
 	padding-right: 16px;
 	margin-top: 16px;
 }
+
+.card {
+	@include make-col();
+	margin-left: 1em;
+	margin-right: 1em;
+	margin-bottom: 1em;
+	display: table;
+	table-layout: fixed;
+	@media (max-width: 47.9em) {
+		@include make-col-span(5);
+		height: 60vh;
+	}
+	@include make-col-span(2);
+	height: 40vh;
+}
+
+ .info {
+ 	border: thin solid gray;
+	background: rgba(255, 255, 255, 0.8);
+	margin: 5%;
+	width: 90%;
+	display: table-cell;
+	vertical-align: bottom;
+ }
+
+ .infoholder {
+ 	display: table-cell;
+ 	vertical-align: bottom;
+ 	width: 100%;
+ }
+
+ .infocontainer {
+ 	display: table;
+ 	table-layout: fixed;
+ 	margin-bottom: 1rem;
+ 	width: 100%;
+ }

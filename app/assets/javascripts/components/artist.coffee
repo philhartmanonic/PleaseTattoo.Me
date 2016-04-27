@@ -1,22 +1,20 @@
 @Artist = React.createClass
-	handleDelete: (e) ->
-		e.preventDefault()
-		$.ajax
-			method: 'DELETE'
-			url: "/artists/#{ @props.artist.id }"
-			dataType: 'JSON'
-			success: () =>
-				@props.handleDeleteArtist @props.artist
-	artistRow: ->
-		React.DOM.tr null,
-			React.DOM.td null, @props.artist.first_name
-			React.DOM.td null, @props.artist.last_name
-			React.DOM.td null, @props.artist.parlor.name
-			React.DOM.td null, @props.artist.parlor.full_address
-			React.DOM.td null,
-				React.DOM.a
-					className: 'btn btn-default'
-					onClick: @handleDelete
-					'Delete'
+	getInitialState: ->
+		divStyle: {
+			backgroundImage: 'url(' + @props.artist.image + ')',
+			backgroundSize: 'cover'
+		}
 	render: ->
-		@artistRow()
+		React.DOM.div
+			className: 'card'
+			style: @state.divStyle
+			React.DOM.div
+				className: 'infoholder'
+				React.DOM.div
+					className: 'infocontainer'
+					React.DOM.div
+						className: 'info card-block'
+						React.DOM.h4
+							className: 'title'
+							"#{@props.artist.first_name} #{@props.artist.last_name}"
+						@props.artist.parlor.name

@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :tats
-  resources :artists
-  resources :parlors
+  resources :tats, :artists, :pictures
+  resources :parlors do
+    collection do
+      get 'search'
+    end
+  end
   resources :tags
   root 'artists#index'
   namespace :api do
     namespace :v1 do
-      resources :parlors, only: [:index, :show]
+      resources :parlors, :artists, :tats, only: [:index, :show] do
+        resources :pictures, only: [:index, :show]
+      end
     end
   end
 

@@ -1,9 +1,6 @@
 <%= form_tag search_parlors_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
 <p>
 	<%= text_field_tag :search, params[:search], class: 'form-control' %>
-	<span>
-		Within: <%= select(:miles, params[:miles], [['1 mile', '1mi'],['5 miles', '5mi'],['10 miles', '10mi'], ['50 miles', '50mi'], ['100 miles', '100mi']]) %> of <%= text_field_tag :where, params[:where], class: 'form-control' %>
-	</span>
 	<%= submit_tag "Search", name: nil, class: 'btn btn-default' %>
 </p>
 <% end %>

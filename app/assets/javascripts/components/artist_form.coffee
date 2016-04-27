@@ -63,6 +63,11 @@
 						React.DOM.option
 							value: 'newparlor'
 							label: 'Add new parlor...'
+				React.DOM.div
+					className: 'form-group'
+					React.DOM.input
+						type: 'file'
+						value: 'pictures'
 				React.DOM.button
 					type: 'submit'
 					className: 'btn btn-primary'

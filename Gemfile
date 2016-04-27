@@ -8,6 +8,7 @@ gem 'rake', '~> 11.1.2'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -25,15 +26,19 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pg', group: :production
 gem 'puma', group: :production
-gem 'bootstrap-sass', '~> 3.3.6'
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+
 gem 'aws-sdk', '< 2.0.0'
 gem 'react-rails', '~> 1.0'
 gem 'devise'
 gem 'cancancan'
 gem 'acts_as_follower'
 gem 'active_model_serializers'
-
+gem 'httparty'
+gem 'elasticsearch'
+gem 'active_hash_relation'
+gem 'searchkick'
+gem 'better_errors', group: :development
+gem 'binding_of_caller', group: :development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
