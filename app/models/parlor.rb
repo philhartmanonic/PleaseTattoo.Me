@@ -6,7 +6,6 @@ class Parlor < ActiveRecord::Base
 	accepts_nested_attributes_for :pictures
 	include ActiveModel::Serialization
 	searchkick locations: ["location"]
-	Parlor.reindex
 
 	attr_accessor :full_address, :location
 

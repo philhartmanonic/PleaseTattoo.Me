@@ -62,3 +62,6 @@ group :development do
   gem 'spring'
 end
 
+source 'https://rails-assets.org' do
+	gem 'rails-assets-tether', '>= 1.1.0'
+end
